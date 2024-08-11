@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class BookselfConfig(AppConfig):
+class BookshelfConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'bookself'
+    name = 'bookshelf'
