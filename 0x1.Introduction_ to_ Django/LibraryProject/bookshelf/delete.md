@@ -1,6 +1,7 @@
 **Delete the Book**
 
 ```python
+from bookshelf.models import Book
 # Delete the book instance
 retrieved_book.delete()
 
