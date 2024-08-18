@@ -1,5 +1,5 @@
 from django.contrib.auth import login, logout
-from django.contrib.auth.forms import AuthenticationForm, 
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from .models import Book
@@ -65,3 +65,20 @@ def register_view(request):
     else:
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
+
+
+from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import render
+from .models import UserProfile
+
+@user_passes_test(lambda u: u.userprofile.role == 'Admin')
+def admin_view(request):
+    return render(request, 'relationship_app/admin_view.html')
+
+@user_passes_test(lambda u: u.userprofile.role == 'Librarian')
+def librarian_view(request):
+    return render(request, 'relationship_app/librarian_view.html')
+
+@user_passes_test(lambda u: u.userprofile.role == 'Member')
+def member_view(request):
+    return render(request, 'relationship_app/member_view.html')
